@@ -195,20 +195,22 @@ export default (Grid: StaticDatagrid) => {
             {this.props.editable && this.props.bulkEdit && (
               <Table.HeaderCell />
             )}
-            {this.colModel.get().filter((item) => !item.meta?.hidden).map((column) => (column.sortable ? (
-              <SortingControlHeader
-                key={column.dataIndex}
-                sortingHandler={this.sortingHandler}
-                updateGridState={this.updateGridState}
-                column={column}
-                basic={basic}
-                classes={classes}
-              />
-            ) : (
-              <Table.HeaderCell key={column.dataIndex} style={{ width: column.width }} className={basic === "very" ? classes.veryBasicGrid : ""}>
-                {column.name}
-              </Table.HeaderCell>
-            )))}
+            {this.colModel.get()
+              .filter((item) => (!item.meta?.hidden && !item.meta?.hideColumnHeader))
+              .map((column) => (column.sortable ? (
+                <SortingControlHeader
+                  key={column.dataIndex}
+                  sortingHandler={this.sortingHandler}
+                  updateGridState={this.updateGridState}
+                  column={column}
+                  basic={basic}
+                  classes={classes}
+                />
+              ) : (
+                <Table.HeaderCell key={column.dataIndex} style={{ width: column.width }} className={basic === "very" ? classes.veryBasicGrid : ""}>
+                  {column?.meta?.label || column.name}
+                </Table.HeaderCell>
+              )))}
             {this.props.editable && this.props.editIndividualRows && (
               <Table.HeaderCell />
             )}
