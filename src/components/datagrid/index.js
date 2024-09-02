@@ -26,6 +26,8 @@ type StaticDatagridProps = {
   basic: string,
   onRowClick: Function,
   classes: Object,
+  noDataImage: string,
+  noDataMessage: string,
 };
 
 class StaticDatagrid extends Component<StaticDatagridProps> {
@@ -79,6 +81,8 @@ class StaticDatagrid extends Component<StaticDatagridProps> {
       editable,
       editIndividualRows,
       bulkEdit,
+      noDataImage,
+      noDataMessage,
       noDataComponent: NoDataComponent,
     } = this.props;
 
@@ -93,7 +97,7 @@ class StaticDatagrid extends Component<StaticDatagridProps> {
     const emptyBody = (
       <Table.Row>
         <Table.Cell colSpan={columnSpan} textAlign="center">
-          <NoDataComponent />
+          <NoDataComponent image={noDataImage} message={noDataMessage} />
         </Table.Cell>
       </Table.Row>
     );
