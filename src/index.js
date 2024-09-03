@@ -30,6 +30,8 @@ export type DataGridProps = {
   title: string,
   columnModel: Array<column>,
   name: string,
+  noDataImage: string,
+  noDataMessage: string,
   noDataComponent?: Component<*>,
   cellComponent?: Component<*>,
   localStore?: boolean,
